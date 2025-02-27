@@ -5,6 +5,7 @@ import Stats from "../components/Stats";
 import image1 from "/welcome1.png";
 import image2 from "/welcome2.png";
 import image3 from "/welcome3.png";
+import Button from "../components/Button";
 
 
 function HomePage() {
@@ -12,8 +13,14 @@ function HomePage() {
         <div className=" lg:ml-[200px] sm:ml-[100px]  flex flex-col h-screen bg-gray-50 ">
             <div className=" flex ">
 
-                <Box />
-                <Box />
+                <Box caption={"Expenses"} captionStyle={"text-xl font-semibold"} boxStyle={"w-[70%] sm:w-[40%] lg:w-[35%] mx-5 sm:mx-2 lg:mx-5"} />
+                <Box caption={"Incomes"} captionStyle={"text-xl font-semibold"} boxStyle={"hidden sm:block w-[70%] sm:w-[40%] lg:w-[35%] "} />
+                <div className=" flex justify-center flex-1 items-center gap-7">
+                    <Button btnCaption="Add Expense" btnCaptionStyle={" hidden lg:block"} btnStyle=" bg-green-600 h-16 w-16 mx-auto my-auto rounded-full flex justify-center items-center hidden lg:flex" />
+                    <Button btnCaption="Add Income" btnCaptionStyle={" hidden lg:block"} btnStyle=" bg-blue-600 h-16 w-16 mx-auto my-auto rounded-full  justify-center items-center hidden lg:flex" />
+                    <Button btnCaption="ADD" btnCaptionStyle={" lg:hidden block"} btnStyle=" bg-blue-600 h-16 w-16 mx-auto my-auto rounded-full  justify-center items-center flex lg:hidden" />
+                </div>
+
             </div>
             <div className="">
                 <RecentTransaction />

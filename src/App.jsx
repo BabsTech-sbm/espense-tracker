@@ -5,6 +5,7 @@ import AddExpenseForm from "./components/ExpenseForm"
 import HomePage from "./pages/Home"
 import { useState } from "react"
 import Sidebar from "./components/Sidebar"
+
 function App() {
     const [loggedIn, setLoggedIn] = useState(true)
     return (

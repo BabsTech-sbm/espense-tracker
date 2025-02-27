@@ -7,11 +7,11 @@ const Grocery = "G"
 const Subscription = "S"
 function RecentTransaction() {
     return (
-        <div>
+        <div className=" ">
 
-            <div className=" w-full mt-10 flex  flex-wrap mx-5 sm:gap- md:gap-10 gap-10">
+            <div className="  mt-10 flex  flex-wrap ml-5 mr-1 lg:justify-between  md:gap-5 gap-5">
 
-                <div className=" flex flex-col gap-7 w-full  sm:max-w-md md:max mx-2  ">
+                <div className=" flex flex-col gap-7 w-full  sm:max-w-md md:max-w-xs lg:max-w-sm mx-2  ">
                     <h1 className=" my-5 font-sans text-md font-semibold">Recent Transactions</h1>
 
                     <div className="flex justify-between cursor-pointer hover:opacity-90">
