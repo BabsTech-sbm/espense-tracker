@@ -4,7 +4,7 @@ import { } from "react-icons/bi"
 import { } from "react-icons/cg"
 function Box({ boxStyle, captionStyle, caption, total, today }) {
     return (
-        <div className={` ${boxStyle} p-5  rounded-lg border border-gray-300 bg-white  h-[150px] m-2 `}>
+        <div className={` ${boxStyle} p-5   rounded-lg border border-gray-300 bg-white  h-[150px] m-2 `}>
             <div className=" flex items-center gap-3">
                 <FaChartBar />
                 <h1 className={captionStyle}>{caption}</h1>

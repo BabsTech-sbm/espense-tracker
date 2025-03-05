@@ -1,55 +1,44 @@
-import Stats from "./Stats"
-import Sticker from "./Sticker"
+import { FaCar, FaDollarSign, FaShoppingCart } from "react-icons/fa";
+import Stats from "./Stats";
 
-
-const Transportation = "T"
-const Grocery = "G"
-const Subscription = "S"
 function RecentTransaction() {
+    const transactions = [
+        { icon: <FaCar className="text-red-500" />, title: "Transportation", amount: "-$90.00", date: "Mar 5, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700" },
+        { icon: <FaShoppingCart className="text-blue-500" />, title: "Groceries", amount: "-$15.00", date: "Mar 3, 2024", status: "Failed", statusColor: "bg-red-100 text-red-700" },
+        { icon: <FaDollarSign className="text-green-500" />, title: "Subscription", amount: "-$105.00", date: "Feb 28, 2024", status: "Pending", statusColor: "bg-orange-100 text-orange-700" },
+    ];
+
     return (
-        <div className=" ">
-
-            <div className="  mt-10 flex  flex-wrap ml-5 mr-1 lg:justify-between  md:gap-5 gap-5">
-
-                <div className=" flex flex-col gap-7 w-full  sm:max-w-md md:max-w-xs lg:max-w-sm mx-2  ">
-                    <h1 className=" my-5 font-sans text-md font-semibold">Recent Transactions</h1>
-
-                    <div className="flex justify-between cursor-pointer hover:opacity-90">
-                        <div className=" flex items-center gap-5">
-                            <Sticker Transactiontype={Transportation} Transactioncolor=" bg-red-600" />
-                            <div className=" flex flex-col  justify-center">
-                                <h1 className="  font-sans">Transportation</h1>
-                                <p className=" text-xs opacity-50 font flex gap-2"><span>5:12 pm - </span><span className=" font-sans">Traveled to Lagos</span></p>
-                            </div>
-                        </div>
-                        <h1 className=" font-mono text-sm font-semibold text-red-700 ">15,000</h1>
+        <div className="w-full px-4 py-6">
+            <div className="flex flex-wrap justify-between gap-6">
+                <div className="flex flex-col gap-6 w-full sm:w-4/4 lg:w-1/2 mx-auto bg-white shadow-lg rounded-lg p-6">
+                    <h1 className="text-lg font-semibold text-gray-800">Recent Transactions</h1>
+                    <div className="overflow-x-auto">
+                        <table className="w-full border-collapse rounded-lg shadow-md">
+                            <thead>
+                                <tr className="bg-gray-100 text-gray-700">
+                                    <th className="px-4 py-3 text-left">Category</th>
+                                    <th className="px-4 py-3 text-left">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {transactions.map((item, index) => (
+                                    <tr key={index} className="border-b even:bg-gray-50 hover:bg-gray-100 transition-all">
+                                        <td className="px-4 py-4 flex items-center gap-2">
+                                            {item.icon}
+                                            <span className="font-medium text-gray-900">{item.title}</span>
+                                        </td>
+                                        <td className="px-4 py-4 font-semibold text-red-600">{item.amount}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                    <div className="flex justify-between cursor-pointer hover:opacity-90">
-                        <div className=" flex items-center gap-5">
-                            <Sticker Transactiontype={Grocery} Transactioncolor=" bg-blue-600" />
-                            <div className=" flex flex-col  justify-center">
-                                <h1 className="  font-sans">Grocery Shopping</h1>
-                                <p className=" text-xs opacity-50 font flex gap-2"><span>5:12 pm - </span><span className=" font-sans">Food and Drink</span></p>
-                            </div>
-                        </div>
-                        <h1 className=" font-mono text-sm font-semibold text-red-700 ">15,000</h1>
-                    </div>
-                    <div className="flex justify-between cursor-pointer hover:opacity-90">
-                        <div className=" flex items-center gap-5">
-                            <Sticker Transactiontype={Subscription} Transactioncolor=" bg-green-600" />
-                            <div className=" flex flex-col  justify-center">
-                                <h1 className="  font-sans">Subscription </h1>
-                                <p className=" text-xs opacity-50 font flex gap-2"><span>5:12 pm - </span><span className=" font-sans">Netflix Subscription</span></p>
-                            </div>
-                        </div>
-                        <h1 className=" font-mono text-sm font-semibold text-red-700">15,000</h1>
-                    </div>
-
                 </div>
                 <Stats />
             </div>
         </div>
-    )
+    );
 }
 
-export default RecentTransaction
+export default RecentTransaction;

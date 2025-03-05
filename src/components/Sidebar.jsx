@@ -1,4 +1,5 @@
 import { FaAddressBook, FaBook, FaBroadcastTower, FaChartLine, FaChessBoard, FaHome, FaUser, FaWallet } from "react-icons/fa"
+import { MdSettings, MdSpaceDashboard } from "react-icons/md"
 import pfp from "/profilepic.png"
 import { Link } from "react-router-dom"
 function Sidebar() {
@@ -27,16 +28,16 @@ function Sidebar() {
                     </Link>
                 </li>
                 <li>
-                    <Link to={""} className="flex items-center gap-3">
+                    <Link to={"/dashboard"} className="flex items-center gap-3">
 
-                        <FaChartLine size={28} />
+                        <MdSpaceDashboard size={28} />
                         <span className=" text-[1rem] font-semibold hidden lg:block">Dashboard</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to={""} className="flex items-center gap-3">
+                    <Link to={"/setting"} className="flex items-center gap-3">
 
-                        < FaAddressBook size={28} />
+                        < MdSettings size={28} />
                         <span className=" text-[1rem] font-semibold hidden lg:block">Settings</span>
                     </Link>
                 </li>

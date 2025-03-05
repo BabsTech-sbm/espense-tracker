@@ -8,30 +8,24 @@ import image3 from "/welcome3.png";
 import Button from "../components/Button";
 import { useState } from "react";
 import BarChartComponent from "../components/BarChart";
+import { FaPlus } from "react-icons/fa";
 
 
 function HomePage() {
 
     return (
-        <div className=" lg:ml-[200px] sm:ml-[100px]  flex flex-col h-screen bg-gray-50 ">
-            <div className=" flex ">
+        <div className=" lg:ml-[200px] sm:ml-[100px] flex flex-col h-screen bg-gray-50 ">
 
-                <Box caption={"Expenses"} captionStyle={"text-xl font-semibold"} boxStyle={"w-[70%] sm:w-[40%] lg:w-[35%] mx-5 sm:mx-2 lg:mx-5"} />
-                <Box caption={"Incomes"} captionStyle={"text-xl font-semibold"} boxStyle={"hidden sm:block w-[70%] sm:w-[40%] lg:w-[35%] "} />
-                <div className=" flex justify-center flex-1 items-center gap-7">
-                    <Button btnCaption="Add Expense" btnCaptionStyle={" hidden lg:block"} btnStyle=" bg-green-600 h-16 w-16 mx-auto my-auto rounded-full flex justify-center items-center hidden lg:flex" />
-                    <Button btnCaption="Add Income" btnCaptionStyle={" hidden lg:block"} btnStyle=" bg-blue-600 h-16 w-16 mx-auto my-auto rounded-full  justify-center items-center hidden lg:flex" />
-                    <Button btnCaption="ADD" btnCaptionStyle={" lg:hidden block"} btnStyle=" bg-blue-600 h-16 w-16 mx-auto my-auto rounded-full  justify-center items-center flex lg:hidden" />
-                </div>
-
-            </div>
-            <div className="">
+            <Link to={"/add-expense"} className="bg-green-500 hidden sm:block absolute right-5 top-2 text-white p-3 rounded-full shadow-lg  items-center justify-center">
+                <FaPlus className="text-2xl" />
+            </Link>
+            < div className="" >
                 <RecentTransaction />
 
-            </div>
+            </ div>
 
             <BarChartComponent />
-        </div>
+        </div >
         /*   <div className="min-h-screen bg-gray-100 flex flex-col items-center ">
               <header className="w-full bg-green-600 text-white py-4 px-6 flex justify-between items-center shadow-md">
                   <h1 className="text-2xl font-bold">Expense Tracker</h1>

@@ -1,133 +1,165 @@
-import { FaSort, FaSortAlphaDown } from "react-icons/fa"
-import Sticker from "./Sticker"
-import { useState } from "react"
+import { MdSort } from "react-icons/md";
+import { useState, useEffect, useRef } from "react";
+import { FiFilter } from "react-icons/fi";
+import { FaCar, FaShoppingCart, FaDollarSign, FaUtensils, FaHome, FaBolt, FaPlane, FaGamepad, FaHeartbeat } from "react-icons/fa"; // Icons for transaction categories
+import { Link } from "react-router-dom";
 
 function ExpenseList() {
-    const Transportation = "T"
-    const Grocery = "G"
-    const Subscription = "S"
-    const [dropdown, setDropdown] = useState(false)
+    const [showFilter, setShowFilter] = useState(false);
+    const [selectedFilter, setSelectedFilter] = useState(null);
+    const [showSort, setShowSort] = useState(false);
+    const filterRef = useRef(null);
+    const sortRef = useRef(null);
+
+    const filterOptions = {
+        "Filter by Date": ["Today", "This Week", "This Month"],
+        "Filter by Category": ["Transportation", "Groceries", "Subscription"],
+        "Filter by Status": ["Active", "Pending", "Completed"],
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                (filterRef.current && !filterRef.current.contains(event.target)) &&
+                (sortRef.current && !sortRef.current.contains(event.target))
+            ) {
+                setShowFilter(false);
+                setShowSort(false);
+                setSelectedFilter(null);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    const transactions = [
+        { icon: <FaCar className="text-red-500" />, title: "Transportation", amount: "-$90.00", date: "Mar 5, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700" },
+        { icon: <FaShoppingCart className="text-blue-500" />, title: "Groceries", amount: "-$15.00", date: "Mar 3, 2024", status: "Failed", statusColor: "bg-red-100 text-red-700" },
+        { icon: <FaDollarSign className="text-green-500" />, title: "Subscription", amount: "-$105.00", date: "Feb 28, 2024", status: "Pending", statusColor: "bg-orange-100 text-orange-700" },
+        { icon: <FaUtensils className="text-yellow-500" />, title: "Dining Out", amount: "-$45.00", date: "Mar 2, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700" },
+        { icon: <FaHome className="text-gray-500" />, title: "Rent", amount: "-$1200.00", date: "Mar 1, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700" },
+        { icon: <FaBolt className="text-orange-500" />, title: "Utilities", amount: "-$200.00", date: "Feb 27, 2024", status: "Pending", statusColor: "bg-orange-100 text-orange-700" },
+        { icon: <FaPlane className="text-blue-400" />, title: "Travel", amount: "-$560.00", date: "Feb 25, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700" },
+        { icon: <FaGamepad className="text-purple-500" />, title: "Entertainment", amount: "-$75.00", date: "Feb 20, 2024", status: "Failed", statusColor: "bg-red-100 text-red-700" },
+        { icon: <FaHeartbeat className="text-red-600" />, title: "Healthcare", amount: "-$220.00", date: "Feb 18, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700" },
+
+    ];
+
     return (
-        <div className="w-full ">
-            <div className=" flex justify-between py-5 pr-5">
-                <h1 className=" text-xl sm:text-2xl font-bold "> All Expenses</h1>
-                <input type="text" placeholder="search..." className=" outline-none shadow-md shadow-gray-200 placeholder:text-sm p-1 border placeholder:text-gray-400 h-[30px] w-[150px]" />
+        <div className="w-full px-4">
+            {/* Header */}
+            <div className="flex justify-between py-5 pr-5">
+                <h1 className="text-lg sm:text-2xl font-bold ml-2 sm:ml-10">Transaction History</h1>
             </div>
-            <div className=" p-4 border-b flex justify-between" >
-                <div className=" relative">
 
-                    <h1 className=" flex text-md cursor-pointer" onClick={() => setDropdown(!dropdown)}>Sort<FaSort size={20} className=" text-black/80" /></h1>
-                    {dropdown && <div className=" flex flex-col absolute bg-white items-start p-2">
-                        <button className=" p-1 font-semibold text-sm">Alphabetical</button>
-                        <button className=" p-1 font-semibold text-sm">Amount</button>
-                        <button className=" p-1 font-semibold text-sm">Status</button>
+            {/* Filter and Sort Section */}
+            <div className="p-4 border-b flex flex-wrap justify-between items-center">
+                <div className="flex items-center gap-4 sm:gap-6 rounded-lg">
+                    {/* Filter Dropdown */}
+                    <div className="relative" ref={filterRef}>
+                        <div
+                            className="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded-lg shadow hover:bg-gray-200"
+                            onClick={() => {
+                                setShowFilter(!showFilter);
+                                setShowSort(false);
+                                setSelectedFilter(null);
+                            }}
+                        >
+                            <FiFilter className="text-xl" />
+                            <span className="text-sm sm:text-base">Filter</span>
+                        </div>
+
+                        {/* Main Filter Dropdown */}
+                        {showFilter && (
+                            <div className="absolute left-0 mt-2 w-44 bg-white shadow-lg p-2 rounded-md z-10">
+                                {Object.keys(filterOptions).map((option) => (
+                                    <p
+                                        key={option}
+                                        className="cursor-pointer p-2 hover:bg-gray-200 rounded"
+                                        onClick={() => setSelectedFilter(option)}
+                                    >
+                                        {option}
+                                    </p>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* Subcategory Dropdown */}
+                        {selectedFilter && (
+                            <div className="absolute left-44 top-0 mt-2 w-44 bg-white shadow-lg p-2 rounded-md z-10">
+                                {filterOptions[selectedFilter].map((subOption) => (
+                                    <p
+                                        key={subOption}
+                                        className="cursor-pointer p-2 hover:bg-gray-200 rounded"
+                                        onClick={() => alert(`Selected: ${selectedFilter} - ${subOption}`)}
+                                    >
+                                        {subOption}
+                                    </p>
+                                ))}
+                            </div>
+                        )}
                     </div>
-                    }
+
+                    {/* Sort Dropdown */}
+                    <div className="relative" ref={sortRef}>
+                        <div
+                            className="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded-lg shadow hover:bg-gray-200"
+                            onClick={() => {
+                                setShowSort(!showSort);
+                                setShowFilter(false);
+                                setSelectedFilter(null);
+                            }}
+                        >
+                            <MdSort className="text-xl" />
+                            <span className="text-sm sm:text-base">Sort</span>
+                        </div>
+                        {showSort && (
+                            <div className="absolute left-0 mt-2 w-44 bg-white shadow-lg p-2 rounded-md z-10">
+                                <p className="cursor-pointer p-2 hover:bg-gray-200 rounded">Sort A-Z</p>
+                                <p className="cursor-pointer p-2 hover:bg-gray-200 rounded">Sort Z-A</p>
+                                <p className="cursor-pointer p-2 hover:bg-gray-200 rounded">Sort by Date</p>
+                            </div>
+                        )}
+                    </div>
                 </div>
-                < button className=" bg-green-600  text-white p-1 px-2 rounded-md">Add Expense</button>
 
-
+                <Link to={"/add-expense"} className="bg-green-600 text-white p-2 rounded-md text-sm sm:text-base">
+                    Add Expense
+                </Link>
             </div>
-            <div className="overflow-x-auto">
 
-
-                <table className="w-full   shadow-lg rounded-lg">
+            {/* Responsive Table */}
+            <div className="overflow-x-auto w-full mt-4">
+                <table className="w-full min-w-[600px] shadow-lg rounded-lg">
                     <thead>
-                        <tr>
-                            <th className="  px-4 py-2 text-left">Title</th>
-                            <th className="  px-4 py-2 text-left">Amount</th>
-                            <th className="  px-4 py-2 text-left">ID</th>
-                            <th className="  px-4 py-2 text-left">Status</th>
+                        <tr className="bg-gray-100 text-gray-700">
+                            <th className="px-4 py-3 text-left">Category</th>
+                            <th className="px-4 py-3 text-left">Amount</th>
+                            <th className="px-4 py-3 text-left">Date</th>
+                            <th className="px-4 py-3 text-left">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="hover:bg-gray-50 transition-all cursor-pointer hover:opacity-85">
-                            <td className="  px-4 py-6 text-left flex items-center gap-1"><input type="checkbox" className=" mr-1 cursor-pointer" /><Sticker Transactiontype={Transportation} Transactioncolor={"bg-red-600"} /> <h1 className="  font-sans">Transportation</h1></td>
-
-                            <td className=" px-4 py-6 text-left"><h1 className=" font-mono text-sm font-semibold text-red-700  ">90,000</h1></td>
-                            <td className=" px-4 py-6 text-left font-serif lowercase text-sm">1E22FV5N</td>
-                            <td className=" px-4 py-6 text-left font-bold text-green-600">Successful</td>
-
-
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-all cursor-pointer hover:opacity-85">
-
-                            <td className="  px-4 py-6 text-left flex items-center gap-1"><input type="checkbox" className=" mr-1 cursor-pointer" /><Sticker Transactiontype={Grocery} Transactioncolor=" bg-blue-600" /> <h1 className="  font-sans">Groceries</h1></td>
-
-                            <td className=" px-4 py-6 text-left"><h1 className=" font-mono text-sm font-semibold text-red-700  ">15,000</h1></td>
-                            <td className=" px-4 py-6 text-left font-serif lowercase text-sm">tE227i0N</td>
-                            <td className=" px-4 py-6 text-left font-bold text-red-600">Failed</td>
-
-
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-all cursor-pointer hover:opacity-85">
-
-                            <td className="  px-4 py-6 text-left flex items-center gap-1"><input type="checkbox" className=" mr-1 cursor-pointer" /><Sticker Transactiontype={Subscription} Transactioncolor=" bg-green-600" /> <h1 className="  font-sans">Subscription</h1></td>
-                            <td className=" px-4 py-6 text-left"><h1 className=" font-mono text-sm font-semibold text-red-700  ">105,000</h1></td>
-                            <td className=" px-4 py-6 text-left font-serif lowercase text-sm">dskjskd16</td>
-                            <td className=" px-4 py-6 text-left font-bold text-orange-500">Pending</td>
-
-
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-all cursor-pointer hover:opacity-85">
-                            <td className="  px-4 py-6 text-left flex items-center gap-1"><input type="checkbox" className=" mr-1 cursor-pointer" /><Sticker Transactiontype={Transportation} Transactioncolor={"bg-red-600"} /> <h1 className="  font-sans">Transportation</h1></td>
-
-                            <td className=" px-4 py-6 text-left"><h1 className=" font-mono text-sm font-semibold text-red-700  ">90,000</h1></td>
-                            <td className=" px-4 py-6 text-left font-serif lowercase text-sm">1E22FV5N</td>
-                            <td className=" px-4 py-6 text-left font-bold text-green-600">Successful</td>
-
-
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-all cursor-pointer hover:opacity-85">
-
-                            <td className="  px-4 py-6 text-left flex items-center gap-1"><input type="checkbox" className=" mr-1 cursor-pointer" /><Sticker Transactiontype={Grocery} Transactioncolor=" bg-blue-600" /> <h1 className="  font-sans">Groceries</h1></td>
-
-                            <td className=" px-4 py-6 text-left"><h1 className=" font-mono text-sm font-semibold text-red-700  ">15,000</h1></td>
-                            <td className=" px-4 py-6 text-left font-serif lowercase text-sm">tE227i0N</td>
-                            <td className=" px-4 py-6 text-left font-bold text-red-600">Failed</td>
-
-
-                        </tr>
-                        <tr className="hover:bg-gray-50 transition-all cursor-pointer hover:opacity-85">
-
-                            <td className="  px-4 py-6 text-left flex items-center gap-1"><input type="checkbox" className=" mr-1 cursor-pointer" /><Sticker Transactiontype={Subscription} Transactioncolor=" bg-green-600" /> <h1 className="  font-sans">Subscription</h1></td>
-                            <td className=" px-4 py-6 text-left"><h1 className=" font-mono text-sm font-semibold text-red-700  ">105,000</h1></td>
-                            <td className=" px-4 py-6 text-left font-serif lowercase text-sm">dskjskd16</td>
-                            <td className=" px-4 py-6 text-left font-bold text-orange-500">Pending</td>
-
-
-                        </tr>
+                        {transactions.map((item, index) => (
+                            <tr key={index} className="border-b even:bg-gray-50 hover:bg-gray-100 transition-all">
+                                <td className="px-4 py-4 flex items-center gap-2">
+                                    {item.icon}
+                                    <span className="font-medium text-gray-900">{item.title}</span>
+                                </td>
+                                <td className="px-4 py-4 font-semibold text-red-600">{item.amount}</td>
+                                <td className="px-4 py-4 text-gray-500">{item.date}</td>
+                                <td className="px-4 py-4">
+                                    <span className={`px-2 py-1 rounded-lg text-sm font-medium ${item.statusColor}`}>
+                                        {item.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
-            {/*   <div className=" border">
-
-                <div className=" p-4 border-b flex justify-between" >
-                    <h1 className=" flex text-md cursor-pointer">Sort<FaSort size={20} className=" text-black/80" /></h1>
-                    < button className=" bg-green-600  text-white p-1 px-2 rounded-md">Add Expense</button>
-                </div>
-                <div className=" flex flex-col p-5">
-                    <div className=" flex justify-between py-5 border-b">
-                        <h1>Details</h1>
-                        <h1>Amount</h1>
-                        <h1>Status</h1>
-
-                    </div>
-                    <div className=" justify-between flex py-5">
-                        <div className=" flex items-center gap-5">
-                            <div className=" flex flex-col  justify-center">
-                                <h1 className="  font-sans">Transportation</h1>
-                            </div>
-                        </div>
-                        <h1 className=" font-mono text-sm font-semibold text-red-700  ">15,000</h1>
-                        <h1>Succesful</h1>
-                    </div>
-                </div>
-            </div> */}
         </div>
-
-
-    )
+    );
 }
 
-export default ExpenseList
+export default ExpenseList;
