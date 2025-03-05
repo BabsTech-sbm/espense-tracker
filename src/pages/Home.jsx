@@ -6,9 +6,12 @@ import image1 from "/welcome1.png";
 import image2 from "/welcome2.png";
 import image3 from "/welcome3.png";
 import Button from "../components/Button";
+import { useState } from "react";
+import BarChartComponent from "../components/BarChart";
 
 
 function HomePage() {
+
     return (
         <div className=" lg:ml-[200px] sm:ml-[100px]  flex flex-col h-screen bg-gray-50 ">
             <div className=" flex ">
@@ -27,7 +30,7 @@ function HomePage() {
 
             </div>
 
-
+            <BarChartComponent />
         </div>
         /*   <div className="min-h-screen bg-gray-100 flex flex-col items-center ">
               <header className="w-full bg-green-600 text-white py-4 px-6 flex justify-between items-center shadow-md">

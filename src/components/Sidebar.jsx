@@ -20,7 +20,7 @@ function Sidebar() {
                     </Link>
                 </li>
                 <li>
-                    <Link to={""} className="flex items-center gap-3">
+                    <Link to={"/expenses"} className="flex items-center gap-3">
 
                         <FaWallet size={28} />
                         <span className=" text-[1rem] font-semibold hidden lg:block">Expenses</span>
@@ -36,7 +36,7 @@ function Sidebar() {
                 <li>
                     <Link to={""} className="flex items-center gap-3">
 
-                        <FaHome size={28} />
+                        < FaAddressBook size={28} />
                         <span className=" text-[1rem] font-semibold hidden lg:block">Settings</span>
                     </Link>
                 </li>

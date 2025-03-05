@@ -9,6 +9,7 @@ function Button({ btnStyle, btnCaption, btnCaptionStyle }) {
                 <FaPlus className=" text-white" size={24} />
             </button>
             <h1 className={`${btnCaptionStyle}  text-center text-sm mt-2`}>{btnCaption}</h1>
+
         </div>
     )
 }
