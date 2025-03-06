@@ -16,9 +16,23 @@ function HomePage() {
     return (
         <div className=" lg:ml-[200px] sm:ml-[100px] flex flex-col h-screen bg-gray-50 ">
 
-            <Link to={"/add-expense"} className="bg-green-500 hidden sm:block absolute right-5 top-2 text-white p-3 rounded-full shadow-lg  items-center justify-center">
+            <Link to={"/add-expense"} className="bg-green-500 hidden sm:block absolute right-1 top-2 text-white p-3 rounded-full shadow-lg  items-center justify-center">
                 <FaPlus className="text-2xl" />
             </Link>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h2 className="text-lg font-semibold text-gray-700">Total Balance</h2>
+                    <p className="text-2xl font-bold text-green-600 mt-2">$3,750.00</p>
+                </div>
+                <div className="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h2 className="text-lg font-semibold text-gray-700">Monthly Expense</h2>
+                    <p className="text-2xl font-bold text-red-600 mt-2">-$1,250.00</p>
+                </div>
+                <div className="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h2 className="text-lg font-semibold text-gray-700">Upcoming Bills</h2>
+                    <p className="text-2xl font-bold text-orange-500 mt-2">$450.00</p>
+                </div>
+            </div>
             < div className="" >
                 <RecentTransaction />
 

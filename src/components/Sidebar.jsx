@@ -1,4 +1,4 @@
-import { FaAddressBook, FaBook, FaBroadcastTower, FaChartLine, FaChessBoard, FaHome, FaUser, FaWallet } from "react-icons/fa"
+import { FaHome, FaWallet } from "react-icons/fa"
 import { MdSettings, MdSpaceDashboard } from "react-icons/md"
 import pfp from "/profilepic.png"
 import { Link } from "react-router-dom"
