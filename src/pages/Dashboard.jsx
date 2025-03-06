@@ -21,12 +21,9 @@ export default function Dashboard() {
             {/* Sidebar */}
 
             {/* Main Content */}
-            <div className="ml-[80px] lg:ml-[190px] w-full p-6 flex flex-col gap-6">
+            <div className="sm:ml-[80px] lg:ml-[190px] w-full p-6 flex flex-col gap-6">
                 {/* Header */}
-                <header className="bg-white shadow-md p-6 rounded-xl text-center md:text-left">
-                    <h1 className="text-2xl font-bold text-gray-800">Expense Tracker Dashboard</h1>
-                    <p className="text-gray-500">Track your spending and manage expenses efficiently.</p>
-                </header>
+
 
                 {/* Overview Section */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -80,11 +77,11 @@ export default function Dashboard() {
 
                     {/* Statistics */}
                     <div className="bg-white p-6 rounded-xl shadow-lg">
-                        <h2 className="text-lg font-semibold mb-4">What You Spend on Most</h2>
+                        <h2 className="text-lg font-semibold mb-4">How You Spend </h2>
                         <ResponsiveContainer width="100%" height={250}>
                             <BarChart data={statsData} layout="vertical">
-                                <XAxis type="number" hide />
-                                <YAxis type="category" dataKey="name" width={100} />
+                                <XAxis type="number" />
+                                <YAxis type="category" dataKey="name" width={120} />
                                 <Tooltip />
                                 <Bar dataKey="value" barSize={25} radius={[8, 8, 8, 8]}>
                                     {statsData.map((entry, index) => (
