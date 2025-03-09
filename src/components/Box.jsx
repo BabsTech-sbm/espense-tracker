@@ -1,24 +1,28 @@
 /* eslint-disable react/prop-types */
-import { FaChartBar } from "react-icons/fa"
+import { } from "react-icons/fa"
 import { } from "react-icons/bi"
 import { } from "react-icons/cg"
-function Box({ boxStyle, captionStyle, caption, total, today }) {
+function Box() {
     return (
-        <div className={` ${boxStyle} p-5   rounded-lg border border-gray-300 bg-white  h-[150px] m-2 `}>
-            <div className=" flex items-center gap-3">
-                <FaChartBar />
-                <h1 className={captionStyle}>{caption}</h1>
-
+        <>
+            <div className=" shadow-lg bg-gradient-to-r from-green-950 to-black flex flex-col gap-16 m-3 sm:m-5 p-5 rounded-2xl">
+                <div>
+                    <h2 className="text-md font-semibold text-white">Total Balance</h2>
+                    <p className="text-xl font-bold text-green-600 mt-2">$3,750.00</p>
+                </div>
+                <div className=" flex justify-between">
+                    <div>
+                        <h2 className="text-md font-semibold text-white">Monthly Expense</h2>
+                        <p className="text-xl font-bold text-red-600 mt-2">-$1,250.00</p>
+                    </div>
+                    <div>
+                        <h2 className="text-md font-semibold text-white">Upcoming Bills</h2>
+                        <p className="text-xl font-bold text-orange-500 mt-2">$450.00</p>
+                    </div>
+                </div>
             </div>
-            <div className=" mt-5">
 
-
-                <h1 className=" text-sm font-mono opacity-80">Total: $13,000 {total}</h1>
-                <h1 className=" text-sm font-mono opacity-80">Today: $1,000{today}</h1>
-
-            </div>
-
-        </div>
+        </>
     )
 }
 

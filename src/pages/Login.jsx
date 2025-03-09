@@ -1,48 +1,53 @@
-import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle, FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { useState } from "react";
 
 function Login() {
+    const [username, setUsername] = useState(
+        localStorage.getItem("username") ? JSON.parse(localStorage.getItem("username")) : ""
+    );
+
     const navigate = useNavigate();
 
     const goBack = () => {
-        navigate(-1); // Navigates to the previous page
+        navigate(-1);
     };
+
     const login = (e) => {
-        e.preventDefault()
-        navigate("/home"); // Navigates to the previous page
+        e.preventDefault();
+        if (!username) return;
+        localStorage.setItem("username", JSON.stringify(username));
+        localStorage.setItem("isLoggedIn", "true");
+        navigate("/");
     };
 
     return (
-
-        <div className=" flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-            <div className="relative w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
-                <FaArrowLeft onClick={goBack} className="absolute left-4 top-4 text-gray-600 cursor-pointer hover:text-gray-800" />
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
+            <div className="relative w-full max-w-md p-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+                <FaArrowLeft 
+                    onClick={goBack} 
+                    className="absolute left-4 top-4 text-gray-600 dark:text-gray-400 cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
+                />
 
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-gray-800">Sign in</h1>
-                    <p className="mt-2 text-gray-600">
-                        or <a href="#" className="text-green-500 hover:underline">create an account</a>
-                    </p>
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">Sign in</h1>
                 </div>
 
                 <form className="mt-6 flex flex-col gap-4">
-                    <input type="text" className="w-full p-3 border rounded-lg focus:ring focus:ring-green-300" placeholder="Email" />
-                    <input type="password" className="w-full p-3 border rounded-lg focus:ring focus:ring-green-300" placeholder="Password" />
-
-                    <label className="flex items-center gap-2 text-gray-700">
-                        <input type="checkbox" className="scale-125 accent-green-600" />
-                        Remember me
-                    </label>
-
-                    <button onClick={login} className="w-full p-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Sign in</button>
-
-                    <div className="flex items-center justify-center gap-2 w-full border border-gray-300 p-3 rounded-lg hover:bg-gray-100 transition">
-                        <FaGoogle className="text-red-500" />
-                        <button type="button" className="font-medium text-gray-700">Sign in with Google</button>
-                    </div>
+                    <input 
+                        type="text" 
+                        className="w-full p-3 border rounded-lg focus:ring focus:ring-green-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white" 
+                        placeholder="Enter Your Name" 
+                        onChange={(e) => setUsername(e.target.value)} 
+                        value={username} 
+                    />
+                    <button 
+                        onClick={login} 
+                        className="w-full p-3 bg-green-600 dark:bg-green-700 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition"
+                    >
+                        Sign in
+                    </button>
                 </form>
-
-                <a href="#" className="block mt-4 text-center text-green-500 hover:underline">Forgotten your password?</a>
             </div>
         </div>
     );
