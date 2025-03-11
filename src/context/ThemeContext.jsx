@@ -2,6 +2,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext();
 
+
+
 export function ThemeProvider({ children }) {
   // Load theme from localStorage or system preference
   const storedTheme = localStorage.getItem("theme");

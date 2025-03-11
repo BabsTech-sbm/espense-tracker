@@ -22,7 +22,7 @@ function Login() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
+        <div className=" h-screen flex flex-col items-center justify-center  bg-gray-100 dark:bg-gray-900 p-6">
             <div className="relative w-full max-w-md p-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg">
                 <FaArrowLeft 
                     onClick={goBack} 

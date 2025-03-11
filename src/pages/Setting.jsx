@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
 import { FaUserEdit, FaMoon, FaSun, FaSignOutAlt, FaHeadset, FaCog } from "react-icons/fa";
 import ThemeToggle from "../components/ThemeToggle"
+import pfp from "/profilepic.png";
 function Settings() {
-
+  const username = JSON.parse(localStorage.getItem("username"))
   return (
     <div className="sm:pl-[100px] min-h-screen dark:bg-gray-800 flex flex-col items-center p-6 transition-all dark:text-gray-300 bg-gray-100 text-gray-900">
       
       {/* Profile Section */}
       <div className="w-full max-w-2xl bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 text-center">
         <img
-          src="https://i.pravatar.cc/150" // Replace with actual profile image
+          src={pfp} // Replace with actual profile image
           alt="Profile"
           className="w-24 h-24 mx-auto rounded-full border-4 border-blue-500"
         />
-        <h2 className="text-2xl font-semibold mt-4">John Doe</h2>
-        <p className="text-gray-500 dark:text-gray-400">johndoe@example.com</p>
+        <h2 className="text-2xl font-semibold mt-4">{username}</h2>
+      
 
         {/* Edit Profile & Logout Buttons */}
         <div className="flex justify-center mt-4 gap-4">

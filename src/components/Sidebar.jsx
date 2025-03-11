@@ -4,7 +4,9 @@ import pfp from "/profilepic.png";
 import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
+
 function Sidebar() {
+    const username = JSON.parse(localStorage.getItem("username"))
     return (
         <div className="dark:bg-gray-900 bg-white gap-20 border dark:border-gray-700 
                         shadow-lg shadow-slate-400 dark:shadow-md dark:shadow-gray-800
@@ -13,7 +15,7 @@ function Sidebar() {
             {/* Profile Section */}
             <div className="lg:flex flex-col items-center w-full">
                 <img src={pfp} className="transition-all duration-300 w-[100px] rounded-full cursor-pointer" />
-                <h1 className="text-sm font-normal sm:hidden lg:block dark:text-white text-gray-800">Adam Johnson</h1>
+                <h1 className="text-sm font-normal sm:hidden lg:block mt-2 dark:text-white text-gray-800">{username}</h1>
             </div>
 
             {/* Navigation Links */}
