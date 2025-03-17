@@ -1,12 +1,6 @@
-import { FaCar, FaDollarSign, FaShoppingCart } from "react-icons/fa";
 import Stats from "./Stats";
 import {expenseValues} from "../context/ExpenseContext"
 function RecentTransaction() {
-    const transactions = [
-        { icon: <FaCar className="text-red-500" />, title: "Transportation", amount: "-$90.00", date: "Mar 5, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300" },
-        { icon: <FaShoppingCart className="text-blue-500" />, title: "Groceries", amount: "-$15.00", date: "Mar 3, 2024", status: "Failed", statusColor: "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300" },
-        { icon: <FaDollarSign className="text-green-500" />, title: "Subscription", amount: "-$105.00", date: "Feb 28, 2024", status: "Pending", statusColor: "bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300" },
-    ];
     const {expenses} = expenseValues()
     return (
         <div className="w-full px-4 py-6">

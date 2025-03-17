@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function ExpenseItem({category, icon, amount, date, status}) {
+function ExpenseItem({category, icon, amount, date, status, id}) {
+    const navigate = useNavigate()
     return (
 
                
-                <tbody>
+                <tbody onClick={() => navigate(`/expense/${id}`)} >
 
                         <tr  className="border-b cursor-pointer dark:border-gray-700   hover:bg-gray-200 dark:hover:bg-gray-700 transition-all">
                             <td className="px-4 py-4 flex items-center gap-2">

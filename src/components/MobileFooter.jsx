@@ -11,7 +11,7 @@ const MobileFooter = () => {
             </Link>
 
             {/* Expenses */}
-            <Link to={"/expenses"} className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">
+            <Link to={"/expense"} className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">
                 <MdOutlineAttachMoney className="text-2xl" />
             </Link>
 

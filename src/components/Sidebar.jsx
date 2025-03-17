@@ -31,7 +31,7 @@ function Sidebar() {
                         </Link>
                     </li>
                     <li>
-                        <Link to={"/expenses"} className="flex items-center gap-3 
+                        <Link to={"/expense"} className="flex items-center gap-3 
                              text-gray-700 dark:text-gray-300 
                              hover:bg-gray-200 dark:hover:bg-gray-700 
                              p-2 rounded-lg shadow-sm dark:shadow-gray-700">

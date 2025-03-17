@@ -1,7 +1,6 @@
 import { MdSort } from "react-icons/md";
 import { useState, useEffect, useRef } from "react";
 import { FiFilter } from "react-icons/fi";
-import { FaCar, FaShoppingCart, FaDollarSign, FaHome, FaGamepad, FaHeartbeat } from "react-icons/fa"; // Icons for transaction categories
 import { Link } from "react-router-dom";
 import {expenseValues} from "../context/ExpenseContext"
 import ExpenseItem from './ExpenseItem';
@@ -19,6 +18,7 @@ function ExpenseList() {
         "Filter by Status": ["Active", "Pending", "Completed"],
     };
 
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
@@ -34,21 +34,12 @@ function ExpenseList() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const transactions = [
-        { icon: <FaCar className="text-red-500" />, title: "Transportation", amount: "-$90.00", date: "Mar 5, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700" },
-        { icon: <FaShoppingCart className="text-blue-500" />, title: "Groceries", amount: "-$15.00", date: "Mar 3, 2024", status: "Failed", statusColor: "bg-red-100 text-red-700" },
-        { icon: <FaDollarSign className="text-green-500" />, title: "Subscription", amount: "-$105.00", date: "Feb 28, 2024", status: "Pending", statusColor: "bg-orange-100 text-orange-700" },
-        { icon: <FaHome className="text-gray-500" />, title: "Rent", amount: "-$1200.00", date: "Mar 1, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700" },
-        { icon: <FaGamepad className="text-purple-500" />, title: "Entertainment", amount: "-$75.00", date: "Feb 20, 2024", status: "Failed", statusColor: "bg-red-100 text-red-700" },
-        { icon: <FaHeartbeat className="text-red-600" />, title: "Healthcare", amount: "-$220.00", date: "Feb 18, 2024", status: "Successful", statusColor: "bg-green-100 text-green-700" },
-
-    ];
-
+    
 const {expenses} = expenseValues()
-console.log(expenses)
+
     return (
 
-        <div className="w-full px-4 dark:bg-gray-900 dark:text-white transition-all">
+        <div className="w-full px-4 pb-8 lg:pl-[220px] sm:pl-[120px]  py-5  flex flex-col h-screen bg-gray-50  dark:bg-gray-900 dark:text-white transition-all">
         {/* Header */}
         <div  className="flex justify-between py-5 pr-5">
             <h1 className="text-lg sm:text-2xl font-bold ml-2 sm:ml-10">Transaction History</h1>
@@ -135,6 +126,7 @@ console.log(expenses)
         <div className="overflow-x-auto w-full mt-4">
     
     <table className="w-full min-w-[600px] shadow-lg dark:shadow-gray-800 rounded-lg">
+   
     <thead>
                     <tr className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white">
                         <th className="px-4 py-3 text-left">Category</th>
@@ -144,7 +136,7 @@ console.log(expenses)
                     </tr>
                 </thead>
         {expenses.map((expense, index) => (
-            <ExpenseItem key={index} icon={expense.icon}  status ={ expense.recurring === true ? "Succesful" : "Pending"} date={expense.date} amount={expense.amount} category={expense.category}/>
+            <ExpenseItem key={index} id={expense.id} icon={expense.icon}  status ={ expense.recurring === true ? "Succesful" : "Pending"} date={expense.date} amount={expense.amount} category={expense.category}/>
         ))}
         </table>
         </div>

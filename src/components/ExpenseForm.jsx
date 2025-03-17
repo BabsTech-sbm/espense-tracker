@@ -27,14 +27,26 @@ export default function AddExpenseForm() {
     const {addExpense} = expenseValues()
     const navigate = useNavigate();
 
+   
+    const handleClickAddAnother = () =>{
+        addExpense(amount, currency, category,  date, paymentMethod, description, recurring, frequency,)
+        setAmount("")
+        setCurrency("USD")
+        setCategory("Transportation")
+        setDate(new Date().toISOString().split("T")[0])
+        setPaymentMethod("Cash")
+        setDescription("")
+        setRecurring(false)
+        setFrequency(recurring ? "Daily" : "No")
+        
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
        addExpense(amount, currency, category,  date, paymentMethod, description, recurring, frequency)
         navigate(-1);
-    }
-    
+    } 
     return (
-        <div className=" bg-white dark:bg-gray-800 sm:h-full   ">
+        <div className=" bg-white dark:bg-gray-800 min-h-screen ">
 
         <form
             onSubmit={handleSubmit}
@@ -84,7 +96,7 @@ export default function AddExpenseForm() {
 
             <div className="flex flex-col sm:flex-row gap-4 mt-6 mb-24 sm:mb-0 ">
                 <button type="submit" className="w-full sm:w-1/2 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-all">Save Expense</button>
-                <button type="button" className="w-full sm:w-1/2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition-all">
+                <button onClick={handleClickAddAnother} type="button" className="w-full sm:w-1/2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition-all">
                     Save & Add Another
                 </button>
             </div>
