@@ -143,6 +143,8 @@ export default function ExpenseDashboard() {
         </div>
       </div>
     </div>
-   
+    git add .
+    git commit -m "Added sorting and filtering features with imporve chart"
+    git push origin main
   );
 }
