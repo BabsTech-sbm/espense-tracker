@@ -3,10 +3,12 @@ import Box from "../components/Box";
 import RecentTransaction from "../components/RecentTransaction";
 import BarChartComponent from "../components/BarChart";
 import { FaPlus } from "react-icons/fa";
+import {} from  "../hooks/useLocalStorage"
+import { useEffect } from "react";
 
 function HomePage() {
     return (
-        <div className="dark:bg-gray-900 dark:text-white lg:pl-[200px] sm:pl-[100px] flex flex-col h-full bg-gray-50 text-gray-900 transition-all ">
+        <div className="dark:bg-gray-900 dark:text-white lg:pl-[200px] sm:pl-[100px] flex flex-col h-full bg-gray-50 text-gray-900 transition-all  ">
 
             {/* Floating Add Expense Button */}
             <Link 
@@ -17,7 +19,11 @@ function HomePage() {
             </Link>
 
             {/* Page Heading */}
-            <h1 className="text-3xl font-semibold ml-10 my-5 mt-10">Overview</h1>
+            
+            <h1 className="text-3xl font-semibold ml-10 my-5 mt-10">
+            
+
+                Overview</h1>
 
             {/* Box Component */}
             <Box />

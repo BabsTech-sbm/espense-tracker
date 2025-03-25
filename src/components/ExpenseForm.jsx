@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import {expenseValues} from "../context/ExpenseContext"
 import { useNavigate } from 'react-router-dom';
+import { FaX } from "react-icons/fa6";
 export default function AddExpenseForm() {
 
     const [amount, setAmount] = useState("")
@@ -42,7 +43,7 @@ export default function AddExpenseForm() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-       addExpense(amount, currency, category,  date, paymentMethod, description, recurring, frequency)
+       addExpense(Number(amount), currency, category,  date, paymentMethod, description, recurring, frequency)
         navigate(-1);
     } 
     return (
@@ -50,8 +51,9 @@ export default function AddExpenseForm() {
 
         <form
             onSubmit={handleSubmit}
-            className="max-w-3xl w-full mx-auto relative p-6 sm:p-8 bg-white dark:bg-gray-800 shadow-lg dark:shadow-md rounded-xl border border-gray-300 dark:border-gray-700 sm:max-w-[70%] md:max-w-xl lg:max-w-[35rem] py-5  transition-all h-full"
+            className="max-w-3xl w-full mx-auto relative p-6 sm:p-8 bg-white dark:bg-gray-800 shadow-lg dark:shadow-md rounded-xl border border-gray-300 dark:border-gray-700 sm:max-w-[70%] md:max-w-xl lg:max-w-[35rem] py-5  transition-all h-full "
             >
+                <FaX className=" absolute z-10 right-5 top-5 dark:text-gray-300 text-gray-800 m-2 cursor-pointer" size={24} onClick={()=> navigate(-1)}/>
             <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800 dark:text-gray-200 text-center">Add Expense</h2>
 
             
