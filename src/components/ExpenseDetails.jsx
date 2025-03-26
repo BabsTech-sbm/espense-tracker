@@ -24,7 +24,7 @@ function ExpenseDetails() {
 /* new Date().toISOString().split("T")[0] */
 
   return (
-    <div className=" bg-gray-50 h-screen dark:bg-gray-900 dark:text-white transition-all sm:mb-0 mb-20 flex flex-col items-center">
+    <div className=" bg-gray-50 h-screen dark:bg-gray-900 dark:text-white transition-all sm:mb-0 mb-20 flex flex-col items-center pb-[120px] sm:pb-2">
        <FaArrowLeft 
                           onClick={goBack} 
                           className=" cursor-pointer z-10 absolute left-10 top-7 sm:left-28 sm:top-5 lg:left-[250px]"

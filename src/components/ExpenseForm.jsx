@@ -47,7 +47,7 @@ export default function AddExpenseForm() {
         navigate(-1);
     } 
     return (
-        <div className=" bg-white dark:bg-gray-800 min-h-screen ">
+        <div className=" bg-white dark:bg-gray-800 min-h-screen pb-[120px] sm:pb-2 ">
 
         <form
             onSubmit={handleSubmit}

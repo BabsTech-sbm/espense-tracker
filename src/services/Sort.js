@@ -12,7 +12,7 @@ export const sortData = (data, sortType) => {
         } else if(sortType === "Date Latest"){
             return new Date(`${b.date}T${b.time}`) - new Date(`${a.date}T${a.time}`)
          } else if(sortType === "Date Oldest"){
-            return new new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`)
+            return new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`)
         }
         return 0;
     })

@@ -1,7 +1,7 @@
 const today = new Date();
 const startOfWeek = new Date(today);
 startOfWeek.setDate(today.getDate() - today.getDay());
-/* const startOfMonth = new Date(today.getFullYear(), today.getMonth()) */
+const startOfMonth = new Date(today.getFullYear(), today.getMonth()) 
 
 export const filterByDate = (data, filterType) => {
   return data.filter((item) => {
