@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import {} from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaArrowLeft, FaCheck } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { MdArchive, MdDelete } from "react-icons/md";
+import DeletePopUp from "./DeletePopUp";
 function ExpenseDetails() {
+const [confirmDelete, setConfirmDelete] = useState(false)
   const { expenses } = expenseValues();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,15 +26,18 @@ function ExpenseDetails() {
 /* new Date().toISOString().split("T")[0] */
 
   return (
-    <div className=" bg-gray-50 h-screen dark:bg-gray-900 dark:text-white transition-all sm:mb-0 mb-20 flex flex-col items-center pb-[120px] sm:pb-2">
+    <div className=" bg-gray-50 h-screen dark:bg-gray-900 dark:text-white transition-all  flex flex-col items-center">
        <FaArrowLeft 
                           onClick={goBack} 
                           className=" cursor-pointer z-10 absolute left-10 top-7 sm:left-28 sm:top-5 lg:left-[250px]"
                           size={24}
                       />
-      <div className="max-w-3xl w-full relative sm:shadow-xl dark:shadow-xl rounded-xl sm:max-w-[70%] md:max-w-xl lg:max-w-[35rem]  ">
+                      {!confirmDelete && <MdDelete className=" cursor-pointer z-10 absolute right-10 top-7 sm:right-28 sm:top-5 " size={32} onClick={()=>setConfirmDelete(true)}/>}
+                      
+                      
+      <div className="max-w-3xl w-full relative sm:shadow-xl dark:shadow-xl rounded-xl sm:max-w-[70%] md:max-w-xl lg:max-w-[35rem] ">
 
-      <div className=" flex flex-col mt-16 p-1 w-full  items-center">
+      <div className=" flex flex-col mt-20 p-1 w-full  items-center">
         <div className=" bg-green-600 w-[80px] h-[80px] rounded-full flex items-center text-4xl justify-center">
           <FaCheck/>
         </div>
@@ -75,16 +80,9 @@ function ExpenseDetails() {
           </tr>
         </tbody>
       </table>
+     
       </div>
-      <div
-                               className="flex items-center gap-2  mt-5 cursor-pointer bg-white dark:bg-red-950 px-5 py-3 rounded-lg shadow dark:shadow-md hover:bg-gray-200 dark:hover:bg-red-900 transition"
-                              onClick={() => {
-                                 
-                              }}
-                          >
-                              <MdDelete className="text-xl dark:text-white" />
-                              <span className="text-sm sm:text-base">Delete</span>
-                          </div>
+      { confirmDelete && <DeletePopUp setConfirmDelete={setConfirmDelete}/>}
     </div>
   );
 }

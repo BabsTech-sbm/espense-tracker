@@ -73,7 +73,7 @@ useEffect(()=>{
         
     
 },[expenses])
-console.log(expenses)
+
     return (
 
         <div className="w-full px-4 pb-[110px] sm:pb-2 lg:pl-[220px] sm:pl-[120px]  py-5  flex flex-col h-screen bg-gray-50  dark:bg-gray-900 dark:text-white transition-all ">
