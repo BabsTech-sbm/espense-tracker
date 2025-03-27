@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 function HomePage() {
     return (
-        <div className="dark:bg-gray-900 dark:text-white lg:pl-[200px] sm:pl-[100px] flex flex-col h-full bg-gray-50 text-gray-900 transition-all  ">
+        <div className="dark:bg-gray-900 dark:text-white lg:pl-[200px] sm:pl-[100px] flex flex-col h-full bg-gray-50 text-gray-900 transition-all pb-[100px] sm:pb-2   ">
 
             {/* Floating Add Expense Button */}
             <Link 

@@ -47,31 +47,31 @@ function ExpenseDetails() {
         <tbody>
           <tr className="">
             <td className=" opacity-60 py-2 " >Status</td>
-            <td className=" pl-28 py-2">Succesful</td>
+            <td className=" pl-24 py-2">Succesful</td>
           </tr>
           <tr>
             <td className=" opacity-60 py-2">Transfer ID</td>
-            <td className=" pl-28 py-2">{expense?.id}</td>
+            <td className=" pl-24 py-2">{expense?.id}</td>
           </tr>
           <tr>
             <td className=" opacity-60 py-2">Category</td>
-            <td className=" pl-28 py-2" >{expense?.category}</td>
+            <td className=" pl-24 py-2" >{expense?.category}</td>
           </tr>
           <tr>
             <td className=" opacity-60 py-2">Payment</td>
-            <td className=" pl-28 py-2">{expense?.paymentMethod}</td>
+            <td className=" pl-24 py-2">{expense?.paymentMethod}</td>
           </tr>
           <tr>
             <td className=" opacity-60 py-2">Description</td>
-            <td className=" pl-28 py-2">{expense?.description || "Null"}</td>
+            <td className=" pl-24 py-2">{expense?.description || "Null"}</td>
           </tr>
           <tr>
             <td className=" opacity-60 py-2" >Date</td>
-            <td className=" pl-28 py-2">{expense?.date}</td>
+            <td className=" pl-24 py-2">{expense?.date}</td>
           </tr>
           <tr>
             <td className=" opacity-60 py-2">Time</td>
-            <td className=" pl-28 py-2">{expense?.time}</td>
+            <td className=" pl-24 py-2">{expense?.time}</td>
           </tr>
         </tbody>
       </table>
