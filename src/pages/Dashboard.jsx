@@ -12,6 +12,7 @@ import { AreaChart, Area } from "recharts";
 import { expenseValues } from "../context/ExpenseContext";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { formatAmount } from "../components/Box";
 
 // Define Colors for Each Category
 const categoryColors = {
@@ -118,7 +119,7 @@ return (
         {/* Total Expenses Card */}
         <div className="bg-white dark:bg-gray-800 w-[70%] mx-auto shadow-md dark:shadow-lg rounded-lg p-4 text-center mb-6">
           <h2 className="text-xl font-semibold dark:text-gray-200">Total Expenses</h2>
-          <p className="text-2xl font-bold text-red-500">${totalExpenses}</p>
+          <p className="text-2xl font-bold text-red-500">${formatAmount(totalExpenses, "USD")}</p>
         </div>
 
         {/* Chart Layout */}

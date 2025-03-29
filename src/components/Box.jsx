@@ -1,14 +1,23 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import { } from "react-icons/fa"
-import { } from "react-icons/bi"
-import { } from "react-icons/cg"
+import { expenseValues } from "../context/ExpenseContext";
+export const formatAmount = (amount, currency = "USD") => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currency,
+    }).format(amount);
+  };
 function Box() {
+    
+    const {expenses} = expenseValues()
+    const totalExpenses = expenses.reduce((sum, item) => sum + Number(item.amount), 0);
+   
     return (
         <>
             <div className=" shadow-lg bg-gradient-to-r from-green-950 to-black flex flex-col gap-16 m-3 sm:m-5 p-5 rounded-2xl">
                 <div>
                     <h2 className="text-md font-semibold text-white">Total Expenses</h2>
-                    <p className="text-xl font-bold text-red-600 mt-2">$3,750.00</p>
+                    <p className="text-xl font-bold text-red-600 mt-2">{formatAmount(totalExpenses, "USD")}</p>
                 </div>
                 <div className=" flex justify-between">
                     <div>
