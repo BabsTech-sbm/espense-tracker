@@ -82,7 +82,7 @@ const [confirmDelete, setConfirmDelete] = useState(false)
       </table>
      
       </div>
-      { confirmDelete && <DeletePopUp setConfirmDelete={setConfirmDelete}/>}
+      { confirmDelete && <DeletePopUp setConfirmDelete={setConfirmDelete} id={id}/>}
     </div>
   );
 }

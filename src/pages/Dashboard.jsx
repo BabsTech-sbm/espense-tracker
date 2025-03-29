@@ -93,15 +93,7 @@ const processMonthlyComparison = (expenses) => {
 };
 
 
-// Line Chart Data (Static for Now)
-const lineData = [
-  { date: "Jan", Expenses: 2500, Savings: 1200 },
-  { date: "Feb", Expenses: 2700, Savings: 1400 },
-  { date: "Mar", Expenses: 2900, Savings: 1500 },
-  { date: "Apr", Expenses: 3100, Savings: 1600 },
-  { date: "May", Expenses: 3300, Savings: 1800 },
-  { date: "Jun", Expenses: 3500, Savings: 2000 },
-];
+
 
 export default function ExpenseDashboard() {
   const { expenses } = expenseValues();

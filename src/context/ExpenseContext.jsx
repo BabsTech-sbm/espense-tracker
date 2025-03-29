@@ -42,7 +42,9 @@ function ExpenseProvider({ children }) {
     setItem("expenses", updatedExpenses); // Save in localStorage
    
   };
-
+const deleteExpense = (id) => {
+setExpenses( expenses.filter(expense => expense.id !== id))
+}
   
   useEffect(() => {
     
@@ -52,7 +54,7 @@ setExpenses(restoredItems)
   
 
   return (
-    <ExpenseContext.Provider value={{ addExpense, expenses}}>
+    <ExpenseContext.Provider value={{ addExpense, expenses, deleteExpense}}>
       {children}
     </ExpenseContext.Provider>
   );
