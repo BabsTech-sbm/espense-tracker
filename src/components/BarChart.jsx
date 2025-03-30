@@ -3,6 +3,7 @@ import React from "react";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer
 } from "recharts";
+import EmptyExpenseList from "./EmptyExpenseList";
 
 // Function to process expenses by month
 const processMonthlyData = (expenses) => {
@@ -35,9 +36,7 @@ const BarChartComponent = () => {
   const { expenses } = expenseValues();
   const monthlyData = processMonthlyData(expenses);
 
-  if (!expenses || expenses.length === 0) {
-    return <p className="text-center text-gray-500 dark:text-gray-400">No data available</p>;
-  }
+ 
 
   return (
     <div className="w-full max-w-5xl p-4 sm:p-6 md:p-8 bg-white dark:bg-gray-800 mt-8 rounded-lg shadow-lg">
@@ -47,6 +46,9 @@ const BarChartComponent = () => {
 
       <div className="bg-gray-50 dark:bg-gray-900 p-4 sm:p-6 rounded-2xl shadow-md">
         <ResponsiveContainer width="100%" height={300}>
+          {!expenses.length ? 
+        <EmptyExpenseList/>
+        :  
           <BarChart data={monthlyData}>
             <CartesianGrid strokeDasharray="4 4" stroke="#E5E7EB" dark:stroke-gray-600 />
             <XAxis dataKey="month" stroke="#6B7280" />
@@ -61,6 +63,7 @@ const BarChartComponent = () => {
               </linearGradient>
             </defs>
           </BarChart>
+          }
         </ResponsiveContainer>
       </div>
     </div>

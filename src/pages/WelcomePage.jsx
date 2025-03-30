@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function WelcomePage() {
     return (
-        <div className="dark:bg-gray-900 bg-white min-h-screen pb-[120px] sm:pb-2" >
+        <div className="dark:bg-gray-900 bg-white min-h-screen sm:pb-2" >
             <header className="w-full bg-green-600 dark:bg-green-700 text-white py-4 px-6 flex justify-between items-center shadow-md">
                 <h1 className="text-2xl font-bold">Expense Tracker</h1>
                 <nav>

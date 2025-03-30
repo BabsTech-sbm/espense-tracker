@@ -6,7 +6,7 @@ function Login() {
     const [username, setUsername] = useState(
         localStorage.getItem("username") ? JSON.parse(localStorage.getItem("username")) : ""
     );
-
+    const [error, setError]  = useState("")
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -15,14 +15,23 @@ function Login() {
 
     const login = (e) => {
         e.preventDefault();
-        if (!username) return;
-        localStorage.setItem("username", JSON.stringify(username));
-        localStorage.setItem("isLoggedIn", "true");
-        navigate("/");
-    };
+        if (!username ) {
 
+            setError("Username cannot be blank")
+            return;
+        }
+        if((!isNaN(username)) && (username.length > 0)  ){
+            setError("Username must be text")
+            return;
+        }
+            localStorage.setItem("username", JSON.stringify(username));
+            localStorage.setItem("isLoggedIn", "true");
+            navigate("/");
+        };
+        
+       
     return (
-        <div className=" h-screen flex flex-col items-center justify-center  bg-gray-100 dark:bg-gray-900 p-6 pb-[120px] sm:pb-2">
+        <div className=" h-screen flex flex-col items-center justify-center  bg-gray-100 dark:bg-gray-900 p-6 sm:pb-2">
             <div className="relative w-full max-w-md p-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg">
                 <FaArrowLeft 
                     onClick={goBack} 
@@ -34,13 +43,18 @@ function Login() {
                 </div>
 
                 <form className="mt-6 flex flex-col gap-4">
+                    <div>
+
                     <input 
                         type="text" 
                         className="w-full p-3 border rounded-lg focus:ring focus:ring-green-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white" 
-                        placeholder="Enter Your Name" 
-                        onChange={(e) => setUsername(e.target.value)} 
+                        placeholder="Enter Your Username" 
+                        onChange={(e) => {setUsername(e.target.value); setError('')}} 
                         value={username} 
-                    />
+                        />
+                       { error && <h1 className=" p-1 text-sm text-red-800">{error}</h1>}
+                        </div>
+                        
                     <button 
                         onClick={login} 
                         className="w-full p-3 bg-green-600 dark:bg-green-700 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition"

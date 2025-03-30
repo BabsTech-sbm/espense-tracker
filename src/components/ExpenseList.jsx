@@ -1,11 +1,14 @@
 import { MdSort } from "react-icons/md";
 import { useState, useEffect, useRef } from "react";
 import { FiFilter, FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {expenseValues} from "../context/ExpenseContext"
 import ExpenseItem from './ExpenseItem';
 import { filterByCategory, filterByDate} from "../services/Filter"; 
 import { sortData } from "../services/Sort";
+import { FaArrowLeft } from "react-icons/fa6";
+import EmptyExpenseList from "./EmptyExpenseList";
+import { formatAmount } from "./Box";
 
 function ExpenseList() {
     const [showFilter, setShowFilter] = useState(false);
@@ -73,15 +76,24 @@ useEffect(()=>{
         
     
 },[expenses])
-
+const navigate = useNavigate()
+const goBack = () => {
+    navigate(-1);
+  };
     return (
 
-        <div className="w-full px-4 pb-[110px] sm:pb-2 lg:pl-[220px] sm:pl-[120px]  py-5  flex flex-col h-screen bg-gray-50  dark:bg-gray-900 dark:text-white transition-all ">
+        <div className="w-full px-4  sm:pb-2 lg:pl-[220px] sm:pl-[120px]  py-5  flex flex-col h-screen bg-gray-50  dark:bg-gray-900 dark:text-white transition-all ">
         {/* Header */}
-        <div  className="flex justify-between py-5 pr-5">
-            <h1 className="text-lg sm:text-2xl font-bold ml-2 sm:ml-10">Transaction History</h1>
-        </div>
-
+         <div className=" flex items-center gap-7 mb-10 mt-2 mx-3">
+                <FaArrowLeft 
+                                        onClick={goBack} 
+                                        className=" cursor-pointer dark:text-gray-300"
+                                        size={24}
+                                    />
+                  <h2 className="text-xl font-semibold dark:text-gray-200">Expense List</h2>
+                  
+                </div>
+        
         {/* Filter and Sort Section */}
         <div className="p-4 border-b dark:border-gray-700 flex flex-wrap justify-between items-center">
             <div className="flex items-center gap-4 sm:gap-6 rounded-lg">
@@ -183,6 +195,10 @@ useEffect(()=>{
         </div>
 
         {/* Responsive Table */}
+        {
+            !expenses.length ? 
+            <EmptyExpenseList/>
+            :
         <div className="overflow-x-auto w-full mt-4">
     
     <table className="w-full min-w-[600px] shadow-lg dark:shadow-gray-800 rounded-lg">
@@ -196,10 +212,11 @@ useEffect(()=>{
                     </tr>
                 </thead>
         {filteredExpense?.map((expense, index) => (
-            <ExpenseItem key={index} id={expense.id}   status ={ "Succesful"} date={expense.date} amount={expense.amount} category={expense.category}/>
+            <ExpenseItem key={index} id={expense.id}   status ={ "Succesful"} date={expense.date} amount={formatAmount(expense.amount, "USD")} category={expense.category}/>
         ))}
         </table>
         </div>
+}
     </div>
 
 

@@ -47,7 +47,7 @@ export default function AddExpenseForm() {
         navigate(-1);
     } 
     return (
-        <div className=" bg-white dark:bg-gray-800 min-h-screen pb-[120px] sm:pb-2 ">
+        <div className=" bg-white dark:bg-gray-800 min-h-screen sm:pb-2 ">
 
         <form
             onSubmit={handleSubmit}
@@ -96,7 +96,7 @@ export default function AddExpenseForm() {
                 </select>
             )}
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-6 mb-24 sm:mb-0 ">
+            <div className="flex flex-col sm:flex-row gap-4 mt-6  sm:mb-0 ">
                 <button type="submit" className="w-full sm:w-1/2 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-all">Save Expense</button>
                 <button onClick={handleClickAddAnother} type="button" className="w-full sm:w-1/2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition-all">
                     Save & Add Another

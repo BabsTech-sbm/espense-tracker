@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import { useLocation } from "react-router-dom";
 import { nav } from "framer-motion/client";
+import { getItem } from "../hooks/useLocalStorage";
+import { useState } from "react";
 
 
 function Sidebar() {
-    
+    const profileUrl = localStorage.getItem("profile-picture") ? getItem("profile-picture"): pfp;
     const username = JSON.parse(localStorage.getItem("username"))
     const location = useLocation()
     
@@ -18,14 +20,16 @@ function Sidebar() {
     const expenseStyle = location.pathname === "/expense" ? "bg-gray-300 dark:bg-gray-700 hover:bg-gray-300 " : ""
     const dashboardStyle = location.pathname === "/dashboard" ? "bg-gray-300 dark:bg-gray-700 hover:bg-gray-300 " : ""
     const settingStyle = location.pathname === "/setting" ? "bg-gray-300 dark:bg-gray-700 hover:bg-gray-300 " : ""
+
+    
     return (
         <div className="dark:bg-gray-900 bg-white gap-20 border dark:border-gray-700 
                         shadow-lg shadow-slate-400 dark:shadow-md dark:shadow-gray-800
-                        transition-all duration-300 fixed left-0 top-0 h-[100vh] w-[80px] lg:w-[190px] 
+                        transition-all duration-300 fixed left-0 top-0 h-[100vh] w-[85px] lg:w-[190px] 
                         hidden p-5 sm:flex flex-col ">
             {/* Profile Section */}
             <div className="lg:flex flex-col items-center w-full">
-                <img src={pfp} className="transition-all duration-300 w-[100px] rounded-full cursor-pointer" />
+                <img src={profileUrl} className="transition-all duration-300 lg:w-[100px] lg:h-[100px] rounded-full cursor-pointer w-[50px] h-[50px] " />
                 <h1 className="text-sm font-normal sm:hidden lg:block mt-2 dark:text-white text-gray-800">{username}</h1>
             </div>
 

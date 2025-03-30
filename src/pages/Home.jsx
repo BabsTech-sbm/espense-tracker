@@ -4,11 +4,14 @@ import RecentTransaction from "../components/RecentTransaction";
 import BarChartComponent from "../components/BarChart";
 import { FaPlus } from "react-icons/fa";
 import {} from  "../hooks/useLocalStorage"
+import { expenseValues } from "../context/ExpenseContext";
 import { useEffect } from "react";
 
 function HomePage() {
+    const {expenses} = expenseValues
+    
     return (
-        <div className="dark:bg-gray-900 dark:text-white lg:pl-[200px] sm:pl-[100px] flex flex-col h-full bg-gray-50 text-gray-900 transition-all pb-[100px] sm:pb-2   ">
+        <div className="dark:bg-gray-900 dark:text-white lg:pl-[200px] sm:pl-[100px] flex flex-col h-full bg-gray-50 text-gray-900 transition-all sm:pb-2   ">
 
             {/* Floating Add Expense Button */}
             <Link 
@@ -30,7 +33,9 @@ function HomePage() {
 
             {/* Recent Transactions */}
             <div className="mt-4">
+                
                 <RecentTransaction />
+
             </div>
 
             {/* Bar Chart Component */}

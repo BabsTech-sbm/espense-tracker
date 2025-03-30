@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { FaArrowLeft, FaCheck } from "react-icons/fa";
 import { MdArchive, MdDelete } from "react-icons/md";
 import DeletePopUp from "./DeletePopUp";
+import { formatAmount } from "./Box";
 function ExpenseDetails() {
 const [confirmDelete, setConfirmDelete] = useState(false)
   const { expenses } = expenseValues();
@@ -42,7 +43,7 @@ const [confirmDelete, setConfirmDelete] = useState(false)
           <FaCheck/>
         </div>
         <span className=" text-4xl font-semibold">
-          ${expense?.amount}.00
+          { formatAmount(expense?.amount, "USD")}
           </span>
           <span className=" text-gray-400 text-[0.7rem]">added expense</span>
         

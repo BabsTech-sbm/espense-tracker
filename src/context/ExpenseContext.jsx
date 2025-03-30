@@ -31,9 +31,7 @@ function ExpenseProvider({ children }) {
       frequency,
       id: Date.now() + Math.floor(Math.random() * 1000),
     
-      time: date > new Date().toISOString().split("T")[0] 
-        ? "Upcoming" 
-        : new Date().toISOString().split("T")[1].split(".")[0],
+      time: new Date().toISOString().split("T")[1].split(".")[0],
     };
   
     const updatedExpenses = [...expenses, newExpense];

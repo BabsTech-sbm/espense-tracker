@@ -4,20 +4,3 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "poppins";
-  scroll-behavior: smooth;
-}
-/* ::-webkit-scrollbar {
-  background: none;
-}
-::-webkit-scrollbar-track {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity)) /* #1e293b */
-/* }
-::-webkit-scrollbar-thumb {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity)) /* #1e293b */

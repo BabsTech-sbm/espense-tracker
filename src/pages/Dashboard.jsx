@@ -13,6 +13,7 @@ import { expenseValues } from "../context/ExpenseContext";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { formatAmount } from "../components/Box";
+import EmptyExpenseList from "../components/EmptyExpenseList";
 
 // Define Colors for Each Category
 const categoryColors = {
@@ -98,7 +99,7 @@ const processMonthlyComparison = (expenses) => {
 
 export default function ExpenseDashboard() {
   const { expenses } = expenseValues();
-  const totalExpenses = expenses.reduce((sum, item) => sum + Number(item.amount), 0);
+  /* const totalExpenses = expenses.reduce((sum, item) => sum + Number(item.amount), 0); */
   const processedData = processChartData(expenses);
   const monthlyData = processMonthlyData(expenses);
 
@@ -109,17 +110,18 @@ export default function ExpenseDashboard() {
     navigate(-1);
   };
 return (
-    <div className="flex bg-gray-100 dark:bg-gray-900 min-h-screen pb-[120px] sm:pb-2 ">
+    <div className="flex bg-gray-100 dark:bg-gray-900 min-h-screen  sm:pb-2 ">
+        
+      <div className="flex-1 sm:ml-[80px] lg:ml-[190px] p-4 ">
+        {/* Total Expenses Card */}
+        <div className=" flex items-center gap-7 mb-10 mt-2 mx-3">
         <FaArrowLeft 
                                 onClick={goBack} 
-                                className=" cursor-pointer z-10 absolute left-5 top-5 sm:left-28 sm:top-5 lg:left-[250px] dark:text-gray-300"
+                                className=" cursor-pointer dark:text-gray-300"
                                 size={24}
                             />
-      <div className="flex-1 sm:ml-[80px] lg:ml-[190px] p-4 pt-16">
-        {/* Total Expenses Card */}
-        <div className="bg-white dark:bg-gray-800 w-[70%] mx-auto shadow-md dark:shadow-lg rounded-lg p-4 text-center mb-6">
-          <h2 className="text-xl font-semibold dark:text-gray-200">Total Expenses</h2>
-          <p className="text-2xl font-bold text-red-500">${formatAmount(totalExpenses, "USD")}</p>
+          <h2 className="text-xl font-semibold dark:text-gray-200">Dashboard</h2>
+          
         </div>
 
         {/* Chart Layout */}
@@ -128,6 +130,9 @@ return (
           <div className="bg-white dark:bg-gray-800 shadow-md dark:shadow-lg rounded-lg p-4 ">
             <h2 className="text-lg font-semibold text-center dark:text-gray-200">Expense Breakdown</h2>
             <ResponsiveContainer width="100%" height={300}>
+              {!expenses.length ?
+            <EmptyExpenseList/> 
+            :
               <PieChart>
                 <Pie data={processedData} dataKey="amount" nameKey="category" cx="50%" cy="50%" outerRadius={80} label>
                   {processedData.map((entry, index) => (
@@ -137,6 +142,7 @@ return (
                 <Tooltip />
                 <Legend />
               </PieChart>
+                }
             </ResponsiveContainer>
           </div>
 
@@ -144,6 +150,9 @@ return (
           <div className="bg-white dark:bg-gray-800 shadow-md dark:shadow-lg rounded-lg p-4">
             <h2 className="text-lg font-semibold text-center dark:text-gray-200">Spending Trends Over Time</h2>
             <ResponsiveContainer width="100%" height={300}>
+            {!expenses.length ?
+            <EmptyExpenseList/>
+            :
               <LineChart data={monthlyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="gray" />
                 <XAxis dataKey="month" stroke="gray" />
@@ -153,6 +162,7 @@ return (
                 <Line type="monotone" dataKey="Expenses" stroke="red" strokeWidth={2} />
                
               </LineChart>
+}
             </ResponsiveContainer>
           </div>
 
@@ -160,6 +170,9 @@ return (
           <div className="bg-white dark:bg-gray-800 shadow-md dark:shadow-lg rounded-lg p-4  md:col-span-2 lg:col-span-1">
             <h2 className="text-lg font-semibold text-center dark:text-gray-200">Category Comparison</h2>
             <ResponsiveContainer width="100%" height={300}>
+            {!expenses.length ?
+            <EmptyExpenseList/>
+            :
               <BarChart data={processedData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="category" />
@@ -171,6 +184,7 @@ return (
                   ))}
                 </Bar>
               </BarChart>
+}
             </ResponsiveContainer>
           </div>
         </div>
@@ -181,6 +195,9 @@ return (
         📊 Previous Month vs This Month
       </h2>
       <ResponsiveContainer width="100%" height={300}>
+      {!expenses.length ?
+      <EmptyExpenseList/>
+      :
         <AreaChart data={monthlyComparisonData}>
           <defs>
             <linearGradient id="colorLastMonth" x1="0" y1="0" x2="0" y2="1">
@@ -200,6 +217,7 @@ return (
           <Area type="monotone" dataKey="LastMonthExpenses" stroke="blue" fill="url(#colorLastMonth)" fillOpacity={1} name="Previous Month" />
           <Area type="monotone" dataKey="ThisMonthExpenses" stroke="purple" fill="url(#colorThisMonth)" fillOpacity={1} name="This Month" />
         </AreaChart>
+}
       </ResponsiveContainer>
           </div>
       </div>
