@@ -34,7 +34,7 @@ function RecentTransaction() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {((items).slice(0,4)).map((item) => (
+                                {((items).slice(0,3)).map((item) => (
                                     
                                     <tr 
                                     key={item.id} 

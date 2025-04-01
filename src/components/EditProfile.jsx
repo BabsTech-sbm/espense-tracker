@@ -23,7 +23,7 @@ if((!isNaN(username)) && (username.length > 0)  ){
     setError("Username must be text")
     return;
 }
-setItem("profile-picture", profileUrl)
+
 setItem("username", username)
 setSaveNewUsername(true)
 
@@ -33,8 +33,12 @@ const disableButton = initialUsername.trim() === username.trim()
 const handleProfileChange = (event) => {
   const file = event.target.files[0];
   if (file) {
-    setProfileUrl(URL.createObjectURL(file));
-    
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setItem("profile-picture", reader.result); // Save Base64 image
+      setProfileUrl(reader.result); // Set state
+    };
   }
 };
 const navigate = useNavigate()

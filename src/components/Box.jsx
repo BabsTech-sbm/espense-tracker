@@ -15,7 +15,8 @@ function Box() {
     const currentMonthExpenses = filterByDate(expenses, "This Month")
     const currentMonth = currentMonthExpenses.reduce((sum, item) => sum + Number(item.amount), 0);
      
-    
+   
+
     return (
         <>
             <div className=" shadow-lg bg-gradient-to-r from-green-950 to-black flex flex-col gap-16 m-3 sm:m-5 p-5 rounded-2xl">

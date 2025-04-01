@@ -3,9 +3,10 @@ import { MdSettings, MdSpaceDashboard } from "react-icons/md";
 import pfp from "/profilepic.png";
 import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { nav } from "framer-motion/client";
 import { getItem } from "../hooks/useLocalStorage";
+
 import { useState } from "react";
 
 
@@ -21,7 +22,7 @@ function Sidebar() {
     const dashboardStyle = location.pathname === "/dashboard" ? "bg-gray-300 dark:bg-gray-700 hover:bg-gray-300 " : ""
     const settingStyle = location.pathname === "/setting" ? "bg-gray-300 dark:bg-gray-700 hover:bg-gray-300 " : ""
 
-    
+    const navigate = useNavigate()
     return (
         <div className="dark:bg-gray-900 bg-white gap-20 border dark:border-gray-700 
                         shadow-lg shadow-slate-400 dark:shadow-md dark:shadow-gray-800
@@ -29,7 +30,9 @@ function Sidebar() {
                         hidden p-5 sm:flex flex-col ">
             {/* Profile Section */}
             <div className="lg:flex flex-col items-center w-full">
-                <img src={profileUrl} className="transition-all duration-300 lg:w-[100px] lg:h-[100px] rounded-full cursor-pointer w-[50px] h-[50px] " />
+                
+                <img src={profileUrl} className="transition-all duration-300 lg:w-[100px] lg:h-[100px] rounded-full cursor-pointer w-[50px] h-[50px] " onClick={()=>navigate("/setting")}/>
+                
                 <h1 className="text-sm font-normal sm:hidden lg:block mt-2 dark:text-white text-gray-800">{username}</h1>
             </div>
 
